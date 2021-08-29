@@ -40,5 +40,7 @@ crowdin {
 dependencies {
     compileOnly(parent!!.childProjects["graaljs"]!!)
 
+    implementation("com.github.0xshamil:java-xid:1.0.0")
+
     testImplementation(project(":testutils"))
 }
