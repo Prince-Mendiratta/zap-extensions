@@ -36,6 +36,8 @@ public class OastRequest extends DefaultHistoryReferencesTableEntry {
     private String handler;
     private String source;
     private String referer;
+    private String method;
+    private String uri;
 
     private OastRequest(HistoryReference historyReference) {
         super(historyReference, OastTableModel.COLUMNS);
@@ -68,6 +70,10 @@ public class OastRequest extends DefaultHistoryReferencesTableEntry {
         }
         oastRequest.referer =
                 historyReference.getHttpMessage().getRequestHeader().getHeader(HttpHeader.REFERER);
+
+        oastRequest.method = historyReference.getHttpMessage().getRequestHeader().getMethod();
+
+        oastRequest.uri = historyReference.getHttpMessage().getRequestHeader().getURI().toString();
         return oastRequest;
     }
 
@@ -81,6 +87,16 @@ public class OastRequest extends DefaultHistoryReferencesTableEntry {
 
     public String getReferer() {
         return referer;
+    }
+
+    @Override
+    public String getMethod() {
+        return method;
+    }
+
+    @Override
+    public String getUri() {
+        return uri;
     }
 
     private static boolean isValidIpAddress(String ip) {
